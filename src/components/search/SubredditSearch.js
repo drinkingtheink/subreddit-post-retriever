@@ -59,7 +59,7 @@ class SubredditSearch extends Component {
           className="subreddit-search-input"
           placeholder="Start searching here..." />
 
-        <BrowseSubredditSearchResults />
+        <BrowseSubredditSearchResults searchResults={this.state.searchResults} />
       </div>
     )
   }
