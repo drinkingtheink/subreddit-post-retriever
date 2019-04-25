@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BrowseSubredditSearchResults from '../browse/BrowseSubredditSearchResults'
 
 class SubredditSearchInput extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class SubredditSearchInput extends Component {
           onChange={this.handleSearchTermChange}
           className="subreddit-search-input"
           placeholder="Start searching here..." />
+          <BrowseSubredditSearchResults />
       </div>
     )
   }
