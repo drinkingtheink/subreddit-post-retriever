@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SubredditSearchResultCard from './SubredditSearchResultCard';
 
 class BrowseSubredditSearchResults extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class BrowseSubredditSearchResults extends Component {
   }
 
   render() {
+
     return (
       <div className="subreddit-search-results-stage">
         <h2>{this.state.headline}</h2>
@@ -16,6 +18,11 @@ class BrowseSubredditSearchResults extends Component {
         <section className="subreddit-search-results">
           <h2>Results will go here</h2>
         </section>
+
+        {this.props.searchResults.map((item, key) =>
+            <SubredditSearchResultCard />
+        )}
+
       </div>
     )
   }
