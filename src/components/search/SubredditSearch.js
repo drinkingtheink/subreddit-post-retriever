@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import BrowseSubredditSearchResults from '../browse/BrowseSubredditSearchResults'
 
-const redditBaseUrl = 'https://www.reddit.com/subreddits/search.json?q='
-
 class SubredditSearch extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +9,9 @@ class SubredditSearch extends Component {
       searchTerm: '',
       searchFeedback: null,
       searchResults: [],
-      readyToSubmitSearch: false
+      readyToSubmitSearch: false,
+      fetchingData: false,
+      currentSubreddit: null
     };
   }
 
@@ -27,7 +27,7 @@ class SubredditSearch extends Component {
   }
 
   searchTheReddits = (searchText) => {
-    const url = `${redditBaseUrl}${searchText}`
+    const url = `https://www.reddit.com/r/${searchText}.json`
 
     fetch(url)
       .then(response => response.json())
@@ -44,8 +44,10 @@ class SubredditSearch extends Component {
     return composedSearchResults
   }
 
-  handleNoSearchResultsFound = () => {
-
+  toggleFetchingDataFlag = (pref) => {
+    this.setState({
+        fetchingData : pref
+    });
   }
 
   render() {

@@ -11,7 +11,9 @@ class SubredditSearchResultCard extends Component {
   render() {
     return (
       <div className="search-result">
-        <p>Check Me Out</p>
+        <h2>{this.props.result.title}</h2>
+        <p>{this.props.result.display_name_prefixed}</p>
+        <p>{this.props.result.public_description}</p>
       </div>
     )
   }

@@ -20,7 +20,7 @@ class BrowseSubredditSearchResults extends Component {
         </section>
 
         {this.props.searchResults.map((item, key) =>
-            <SubredditSearchResultCard />
+            <SubredditSearchResultCard key={key} result={item.data} />
         )}
 
       </div>
