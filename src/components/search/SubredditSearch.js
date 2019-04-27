@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BrowseSubredditSearchResults from '../browse/BrowseSubredditSearchResults'
 import SearchErrorMessage from './SearchErrorMessage'
+import {debounce} from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
 const initialHeadline = 'Search Subreddits Here'
@@ -18,16 +19,19 @@ class SubredditSearch extends Component {
       currentSubreddit: null,
       showError: false
     };
+    this.searchTheReddits = debounce(500, this.searchTheReddits);
   }
 
-  handleSearchTermChange = (event) => {
-    let searchText = event.target.value || null
+  handleSearchTermChange = (e) => {
+    let searchText = e.target.value || ''
+  
     this.setState({
         searchTerm : searchText
     });
-
+    
     if(searchText && searchText.length > 2) {
-      this.searchTheReddits(searchText)
+        this.clearSearchResults()
+        this.searchTheReddits(searchText)
     } 
   }
 
@@ -68,19 +72,25 @@ class SubredditSearch extends Component {
     })
   }
 
+  clearSearchResults = () => {
+    this.setState({
+      searchResults: []
+    })
+  }
+
   render() {
     return (
       <main className="subreddit-search">
-        <div className="subreddit-search-input-stage">
+        <div className="subreddit-search__input-stage">
           <h1 className="main-headline">{this.state.headline}</h1>
           <input 
             type="text"
-            value={this.state.searchTerm}
-            onChange={this.handleSearchTermChange}
-            className="subreddit-search-input"
+            onChange={this.handleSearchTermChange.bind(this)}
+            className="subreddit-search__input"
             placeholder="Start searching here..." />
 
         </div>
+        
         <section className="actions">
           { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.clearSearch}>Clear Search</button> : null }
         </section> 
