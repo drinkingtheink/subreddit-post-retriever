@@ -31,6 +31,9 @@ class SubredditSearch extends Component {
     
     if(searchText && searchText.length > 2) {
         this.clearSearchResults()
+        this.setState({
+          fetchingData : true
+        });
         this.searchTheReddits(searchText)
     } 
   }
@@ -45,11 +48,13 @@ class SubredditSearch extends Component {
       .then(response => {
         this.setState({
           searchResults: response,
+          fetchingData: false
         })
       })
       .catch(error => {
         this.setState({
           showError: true,
+          fetchingData: false
         })
       })
   }
@@ -87,7 +92,8 @@ class SubredditSearch extends Component {
             type="text"
             onChange={this.handleSearchTermChange.bind(this)}
             className="subreddit-search__input"
-            placeholder="Start searching here..." />
+            placeholder="Start searching here..." 
+            rel="subreddit-search__input" />
 
         </div>
         

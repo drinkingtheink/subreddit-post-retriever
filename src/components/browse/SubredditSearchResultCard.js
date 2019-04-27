@@ -11,7 +11,7 @@ class SubredditSearchResultCard extends Component {
   render() {
     return (
       <div className="search-result">
-        <h2>
+        <h2 className="post-headline">
           <a 
             href={this.props.redditBaseUrl + '/' + this.props.result.permalink} 
             alt={this.props.result.title}
@@ -22,7 +22,6 @@ class SubredditSearchResultCard extends Component {
           </a>
         </h2>
         <p className="display_name">{this.props.result.display_name_prefixed}</p>
-        <p className="selftext">{this.props.result.selftext}</p>
         <p className="author">By: {this.props.result.author}</p>
       </div>
     )
