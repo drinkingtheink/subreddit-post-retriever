@@ -21,9 +21,9 @@ class SubredditSearchResultCard extends Component {
               {this.props.result.title}
           </a>
         </h2>
-        <p>{this.props.result.display_name_prefixed}</p>
-        <p>By: {this.props.result.author}</p>
-        <p>{this.props.result.selftext}</p>
+        <p className="display_name">{this.props.result.display_name_prefixed}</p>
+        <p className="selftext">{this.props.result.selftext}</p>
+        <p className="author">By: {this.props.result.author}</p>
       </div>
     )
   }

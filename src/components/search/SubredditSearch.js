@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import BrowseSubredditSearchResults from '../browse/BrowseSubredditSearchResults'
+import SearchErrorMessage from './SearchErrorMessage'
 
 const redditBaseUrl = 'https://www.reddit.com'
+const initialHeadline = 'Search Subreddits Here'
 
 class SubredditSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headline: 'Search Subreddits Here',
+      headline: initialHeadline,
       searchTerm: '',
       searchFeedback: null,
       searchResults: [],
       readyToSubmitSearch: false,
       fetchingData: false,
-      currentSubreddit: null
+      currentSubreddit: null,
+      showError: false
     };
   }
 
@@ -40,6 +43,11 @@ class SubredditSearch extends Component {
           searchResults: response,
         })
       })
+      .catch(error => {
+        this.setState({
+          showError: true,
+        })
+      })
   }
 
   composeSearchResults = (searchPayload) => {
@@ -47,27 +55,43 @@ class SubredditSearch extends Component {
     return composedSearchResults
   }
 
-  toggleFetchingDataFlag = (pref) => {
+  clearSearch = () => {
     this.setState({
-        fetchingData : pref
-    });
+      headline: initialHeadline,
+      searchTerm: '',
+      searchFeedback: null,
+      searchResults: [],
+      readyToSubmitSearch: false,
+      fetchingData: false,
+      currentSubreddit: null,
+      showError: false
+    })
   }
 
   render() {
     return (
-      <div className="subreddit-search-input-stage">
-        <h1>{this.state.headline}</h1>
-        <input 
-          type="text"
-          value={this.state.searchTerm}
-          onChange={this.handleSearchTermChange}
-          className="subreddit-search-input"
-          placeholder="Start searching here..." />
+      <main className="subreddit-search">
+        <div className="subreddit-search-input-stage">
+          <h1 className="main-headline">{this.state.headline}</h1>
+          <input 
+            type="text"
+            value={this.state.searchTerm}
+            onChange={this.handleSearchTermChange}
+            className="subreddit-search-input"
+            placeholder="Start searching here..." />
 
-        <BrowseSubredditSearchResults 
-          redditBaseUrl={redditBaseUrl}
-          searchResults={this.state.searchResults} />
-      </div>
+        </div>
+        <section className="actions">
+          { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.clearSearch}>Clear Search</button> : null }
+        </section> 
+
+        <section className="results">
+          { this.state.showError 
+            ? <SearchErrorMessage errorMessage="Please try a different search term or try again later. Thank you." />
+            : <BrowseSubredditSearchResults redditBaseUrl={redditBaseUrl} searchResults={this.state.searchResults} />
+          }
+        </section>
+      </main>
     )
   }
 }

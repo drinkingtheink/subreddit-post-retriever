@@ -5,7 +5,7 @@ class BrowseSubredditSearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headline: 'Pretty Cool, Right?'
+      headline: 'Search Results'
     };
   }
 
@@ -16,16 +16,13 @@ class BrowseSubredditSearchResults extends Component {
         <h2>{this.state.headline}</h2>
 
         <section className="subreddit-search-results">
-          <h2>Results will go here</h2>
-        </section>
-
-        {this.props.searchResults.map((item, key) =>
+          {this.props.searchResults.map((item, key) =>
             <SubredditSearchResultCard 
               redditBaseUrl={this.props.redditBaseUrl}
               key={key} 
               result={item.data} />
-        )}
-
+          )}
+        </section>
       </div>
     )
   }
