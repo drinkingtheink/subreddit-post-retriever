@@ -59,7 +59,7 @@ class SubredditSearch extends Component {
     return composedSearchResults
   }
 
-  clearSearch = () => {
+  resetSearch = () => {
     this.setState({
       headline: initialHeadline,
       searchTerm: '',
@@ -92,7 +92,7 @@ class SubredditSearch extends Component {
         </div>
         
         <section className="actions">
-          { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.clearSearch}>Clear Search</button> : null }
+          { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.resetSearch}>Clear Search</button> : null }
         </section> 
 
         <section className="results">
