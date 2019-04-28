@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import BrowseSubredditSearchResults from '../browse/BrowseSubredditSearchResults'
+import BrowseSearchResults from '../browse/BrowseSearchResults'
 import SearchErrorMessage from './SearchErrorMessage'
 import {debounce} from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
 const initialHeadline = 'Search Subreddits Here'
 
-class SubredditSearch extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,8 @@ class SubredditSearch extends Component {
     let searchText = e.target.value || ''
   
     this.setState({
-        searchTerm : searchText
+        searchTerm : searchText,
+        showError: false
     });
     
     if(searchText && searchText.length > 2) {
@@ -96,6 +97,8 @@ class SubredditSearch extends Component {
             rel="subreddit-search__input" />
 
         </div>
+
+        { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
         
         <section className="actions">
           { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.resetSearch}>Clear Search</button> : null }
@@ -104,7 +107,7 @@ class SubredditSearch extends Component {
         <section className="results">
           { this.state.showError 
             ? <SearchErrorMessage errorMessage="Please try a different search term or try again later. Thank you." />
-            : <BrowseSubredditSearchResults redditBaseUrl={redditBaseUrl} searchResults={this.state.searchResults} />
+            : <BrowseSearchResults redditBaseUrl={redditBaseUrl} searchResults={this.state.searchResults} />
           }
         </section>
       </main>
@@ -112,4 +115,4 @@ class SubredditSearch extends Component {
   }
 }
 
-export default SubredditSearch;
+export default Search;

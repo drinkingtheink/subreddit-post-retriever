@@ -1,4 +1,4 @@
-.subreddit-search-results {
+.search-results {
   padding: 0 1em;
   display: flex;
   flex-wrap: wrap;
@@ -37,12 +37,16 @@
 
       &:hover {
         color: white;
-        border-color: $color2;
+        border-color: $color3;
       }
 
       &:visited {
         background-color: $color5;
         color: white;
+
+        &:hover {
+          border-color: $color5;
+        }
 
         &:after {
           border-top-color: $color5;
@@ -83,14 +87,10 @@
     }
   }
 
-  .selftext {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .author {
-    position: absolute;
-    bottom: 0;
+    margin: 0;
+    text-align: left;
+    padding: 0 0 1rem 3rem;
+    font-weight: bold;
   }
 }

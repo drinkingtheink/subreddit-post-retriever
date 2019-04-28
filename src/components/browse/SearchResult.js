@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SubredditSearchResultCard extends Component {
+class SearchResultCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,10 +22,10 @@ class SubredditSearchResultCard extends Component {
           </a>
         </h2>
         <p className="display_name">{this.props.result.display_name_prefixed}</p>
-        <p className="author">By: {this.props.result.author}</p>
+        <p className="author">{this.props.result.author}</p>
       </div>
     )
   }
 }
 
-export default SubredditSearchResultCard;
+export default SearchResultCard;

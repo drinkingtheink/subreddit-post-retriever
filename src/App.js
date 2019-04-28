@@ -1,11 +1,11 @@
 import React from 'react';
-import SubredditSearch from './components/search/SubredditSearch'
+import Search from './components/search/Search'
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <SubredditSearch />  
+      <Search />  
     </div>
   );
 }
