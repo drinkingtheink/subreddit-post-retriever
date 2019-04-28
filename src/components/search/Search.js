@@ -76,6 +76,7 @@ class Search extends Component {
       currentSubreddit: null,
       showError: false
     })
+    this.refs.search.value = ''
   }
 
   clearSearchResults = () => {
@@ -94,7 +95,7 @@ class Search extends Component {
             onChange={this.handleSearchTermChange.bind(this)}
             className="subreddit-search__input"
             placeholder="Start searching here..." 
-            rel="subreddit-search__input" />
+            ref="search" />
 
         </div>
 

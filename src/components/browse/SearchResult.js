@@ -15,7 +15,7 @@ class SearchResultCard extends Component {
     };
 
     function Thumbnail({thumbnail}) {
-      if (thumbnail !== 'self') {
+      if (thumbnail !== '' && thumbnail !== 'self') {
         return (
           <span className="post-thumbnail" style={thumbStyle}></span>
         )
