@@ -137,7 +137,6 @@ class Search extends Component {
         <section className="results">
           {searchResultsFound ? (
             <h2>
-              <span>({searchResultsCount})</span> 
               Search Result{ searchResultsCount > 1 || searchResultsCount ? 's' : null }
             </h2>
           ) : null}
@@ -149,7 +148,9 @@ class Search extends Component {
           }
 
           { searchResultsFound 
-            ? <Pagination groups={this.state.searchResults} />
+            ? <Pagination 
+              groups={this.state.searchResults} 
+              activeResultsGroup={activeResultsGroup} />
             : null
           }
 
