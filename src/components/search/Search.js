@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BrowseSearchResults from '../browse/BrowseSearchResults'
+import Pagination from '../browse/Pagination'
 import SearchMessage from './SearchMessage'
 import {debounce} from 'throttle-debounce'
 
@@ -129,17 +130,28 @@ class Search extends Component {
         </section>  
 
         <section className="results">
+          {searchResultsFound ? (
+            <h2>
+              <span>({searchResultsCount})</span> 
+              Search Result{ searchResultsCount > 1 || searchResultsCount ? 's' : null }
+            </h2>
+          ) : null}
+
+
           { this.state.showError 
             ? <SearchMessage headline="Whoops, something went wrong with your search" message="Please try a different search term or try again later. Thank you." />
-            : <BrowseSearchResults 
-              redditBaseUrl={redditBaseUrl} 
-              searchResults={this.state.searchResults} 
-              searchResultsFound={searchResultsFound}
-              searchResultsCount={searchResultsCount}
-            />
+            : <div>
+                <Pagination groups={this.state.searchResults} />
+                <BrowseSearchResults 
+                  redditBaseUrl={redditBaseUrl} 
+                  searchResults={this.state.searchResults} 
+                  searchResultsFound={searchResultsFound}
+                  searchResultsCount={searchResultsCount}
+                />
+              </div>
           }
 
-          { !this.state.searchTerm 
+          { !this.state.searchTerm && !this.state.showError 
             ? <SearchMessage headline="You should enter a search term" message="Start typing to start searching..." />
             : null
           }
