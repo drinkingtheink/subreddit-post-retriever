@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BrowseSearchResults from '../browse/BrowseSearchResults'
-import SearchErrorMessage from './SearchErrorMessage'
+import SearchMessage from './SearchMessage'
 import {debounce} from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
@@ -45,10 +45,12 @@ class Search extends Component {
 
     fetch(url)
       .then(response => response.json())
-      .then(response => this.composeSearchResults(response["data"]))
-      .then(response => {
+      .then(response => this.distillSearchResults(response["data"]))
+      .then(composedSearchResults => this.generateResultsGroups(composedSearchResults, 10))
+      .then(composedSearchGroups => {
+        console.log(`SAVING RSULTS TO STATE +++++>> ${JSON.stringify(composedSearchGroups)}`)
         this.setState({
-          searchResults: response,
+          searchResults: composedSearchGroups,
           fetchingData: false
         })
       })
@@ -60,9 +62,23 @@ class Search extends Component {
       })
   }
 
-  composeSearchResults = (searchPayload) => {
+  distillSearchResults = (searchPayload) => {
     const composedSearchResults = searchPayload.children || []
     return composedSearchResults
+  }
+
+  generateResultsGroups = (rawResults, groupSize) => {
+    let index = 0;
+    const arrayLength = rawResults.length;
+    const groupList = [];
+    
+    for (index = 0; index < arrayLength; index += groupSize) {
+        let newGroup = rawResults.slice(index, index+groupSize);
+        // Do something if you want with the group
+        groupList.push(newGroup);
+    }
+
+    return groupList;
   }
 
   resetSearch = () => {
@@ -86,10 +102,14 @@ class Search extends Component {
   }
 
   render() {
+    const searchResultsFound = this.state.searchResults && this.state.searchResults.length > 0
+    const searchResultsCount = searchResultsFound ? this.state.searchResults.length : 0
+
     return (
       <main className="subreddit-search">
         <div className="subreddit-search__input-stage">
           <h1 className="main-headline">{this.state.headline}</h1>
+          
           <input 
             type="text"
             onChange={this.handleSearchTermChange.bind(this)}
@@ -100,15 +120,25 @@ class Search extends Component {
         </div>
 
         { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
-        
+
         <section className="actions">
-          { this.state.searchResults.length > 0 ? <button className="clear-search" onClick={this.resetSearch}>Clear Search</button> : null }
+          { searchResultsFound ? <button className="clear-search" onClick={this.resetSearch}>Clear Search</button> : null }
         </section> 
 
         <section className="results">
           { this.state.showError 
-            ? <SearchErrorMessage errorMessage="Please try a different search term or try again later. Thank you." />
-            : <BrowseSearchResults redditBaseUrl={redditBaseUrl} searchResults={this.state.searchResults} />
+            ? <SearchMessage headline="Whoops, something went wrong with your search" message="Please try a different search term or try again later. Thank you." />
+            : <BrowseSearchResults 
+              redditBaseUrl={redditBaseUrl} 
+              searchResults={this.state.searchResults} 
+              searchResultsFound={searchResultsFound}
+              searchResultsCount={searchResultsCount}
+            />
+          }
+
+          { !this.state.searchTerm 
+            ? <SearchMessage headline="You should enter a search term" message="Start typing to start searching..." />
+            : null
           }
         </section>
       </main>

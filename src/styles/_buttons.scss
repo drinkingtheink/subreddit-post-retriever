@@ -1,0 +1,10 @@
+button {
+  border: none;
+  padding: 1.5rem 2.5rem;
+  text-transform: uppercase;
+  border-radius: $app-border-radius;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
