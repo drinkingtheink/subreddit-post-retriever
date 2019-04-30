@@ -68,17 +68,17 @@ class Search extends Component {
   }
 
   generateResultsGroups = (rawResults, groupSize) => {
-    let index = 0;
-    const arrayLength = rawResults.length;
-    const groupList = [];
+    let index = 0
+    const arrayLength = rawResults.length
+    const groupList = []
     
     for (index = 0; index < arrayLength; index += groupSize) {
-        let newGroup = rawResults.slice(index, index+groupSize);
+        let newGroup = rawResults.slice(index, index+groupSize)
         // Do something if you want with the group
-        groupList.push(newGroup);
+        groupList.push(newGroup)
     }
 
-    return groupList;
+    return groupList
   }
 
   resetSearch = () => {
@@ -93,12 +93,17 @@ class Search extends Component {
       showError: false
     })
     this.refs.search.value = ''
+    this.refs.search.focus()
   }
 
   clearSearchResults = () => {
     this.setState({
       searchResults: []
     })
+  }
+
+  componentDidMount(){
+    this.refs.search.focus()
   }
 
   render() {
@@ -109,21 +114,19 @@ class Search extends Component {
       <main className="subreddit-search">
         <div className="subreddit-search__input-stage">
           <h1 className="main-headline">{this.state.headline}</h1>
-          
           <input 
             type="text"
             onChange={this.handleSearchTermChange.bind(this)}
             className="subreddit-search__input"
             placeholder="Start searching here..." 
             ref="search" />
-
         </div>
 
         { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
 
         <section className="actions">
-          { searchResultsFound ? <button className="clear-search" onClick={this.resetSearch}>Clear Search</button> : null }
-        </section> 
+          { searchResultsFound ? <button className="{ clear-search, this.state.searchTerm.length > 0 ? '' : 'disabled' }" onClick={this.resetSearch}>Clear Search</button> : null }
+        </section>  
 
         <section className="results">
           { this.state.showError 

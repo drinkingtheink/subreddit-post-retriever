@@ -29,14 +29,14 @@
       text-decoration: none;
       color: $color3;
       text-align: left;
-      background-color: $color2;
+      background-color: white;
       padding: 1rem;
       border: 4px transparent solid;
       border-radius: 5px;
       position: relative;
 
       &:hover {
-        color: white;
+        color: darken( $color3, 10% );
         border-color: $color3;
       }
 
@@ -46,6 +46,7 @@
 
         &:hover {
           border-color: $color5;
+          background-color: darken($color5, 10%);
         }
 
         &:after {
@@ -74,13 +75,13 @@
 
       &:after {
         border-color: rgba(84, 106, 118, 0);
-        border-top-color: $color2;
+        border-top-color: white;
         border-width: $pointer-after-border-width;
         margin-left: -$pointer-after-border-width;
       }
       &:before {
         border-color: rgba(84, 106, 118, 0);
-        border-top-color: $color2;
+        border-top-color: white;
         border-width: $pointer-before-border-width;
         margin-left: -$pointer-before-border-width;
       }
@@ -100,7 +101,7 @@
       height: $post-thumbnail-dim;
       width: $post-thumbnail-dim;
       border-radius: 50%;
-      background-color: $color2;
+      background-color: white;
       margin-right: .5rem;
       border: 2px solid $color3;
     }

@@ -3,9 +3,15 @@
 }
 
 .subreddit-search__input-stage {
-  background: $color3;
+  background: white;
   padding-bottom: 2rem;
   margin-bottom: 1rem;
+  border-bottom: 1px solid $color2;
+}
+
+.search-input-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .subreddit-search__input {
