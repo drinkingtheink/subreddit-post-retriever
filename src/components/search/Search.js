@@ -49,7 +49,6 @@ class Search extends Component {
       .then(response => this.distillSearchResults(response["data"]))
       .then(composedSearchResults => this.generateResultsGroups(composedSearchResults, 10))
       .then(composedSearchGroups => {
-        console.log(`SAVING RSULTS TO STATE +++++>> ${JSON.stringify(composedSearchGroups)}`)
         this.setState({
           searchResults: composedSearchGroups,
           fetchingData: false
@@ -74,11 +73,14 @@ class Search extends Component {
     const groupList = []
     
     for (index = 0; index < arrayLength; index += groupSize) {
-        let newGroup = rawResults.slice(index, index+groupSize)
-        // Do something if you want with the group
-        groupList.push(newGroup)
+      let newGroup = {
+        active: false,
+        list: rawResults.slice(index, index+groupSize)
+      }
+      groupList.push(newGroup)
     }
 
+    groupList[0].active = true
     return groupList
   }
 
@@ -110,6 +112,7 @@ class Search extends Component {
   render() {
     const searchResultsFound = this.state.searchResults && this.state.searchResults.length > 0
     const searchResultsCount = searchResultsFound ? this.state.searchResults.length : 0
+    let activeResultsGroup = this.state.searchResults.filter(result => result.active) || false
 
     return (
       <main className="subreddit-search">
@@ -140,15 +143,22 @@ class Search extends Component {
 
           { this.state.showError 
             ? <SearchMessage headline="Whoops, something went wrong with your search" message="Please try a different search term or try again later. Thank you." />
-            : <div>
-                <Pagination groups={this.state.searchResults} />
-                <BrowseSearchResults 
-                  redditBaseUrl={redditBaseUrl} 
-                  searchResults={this.state.searchResults} 
-                  searchResultsFound={searchResultsFound}
-                  searchResultsCount={searchResultsCount}
-                />
-              </div>
+            : null
+          }
+
+          { searchResultsFound 
+            ? <Pagination groups={this.state.searchResults} />
+            : null
+          }
+
+          { activeResultsGroup 
+            ? <BrowseSearchResults 
+                redditBaseUrl={redditBaseUrl} 
+                searchResultsGroup={activeResultsGroup} 
+                searchResultsFound={searchResultsFound}
+                searchResultsCount={searchResultsCount}
+              />
+            : null
           }
 
           { !this.state.searchTerm && !this.state.showError 

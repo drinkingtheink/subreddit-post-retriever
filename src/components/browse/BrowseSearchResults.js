@@ -6,19 +6,17 @@ class BrowseSearchResults extends Component {
     return (
       <div className="search-results-stage">
         <section className="search-results">
-          {this.props.searchResults.map((group, key) => {
-              return group.map((subitem, i) => {
-                return (
-                   <SearchResult
-                    redditBaseUrl={this.props.redditBaseUrl}
-                    key={subitem.key}
-                    result={subitem.data}
-                  />
-                )
-              })
-             }
-            )
-          }
+          {this.props.searchResultsGroup.map((group, index) => (
+            <span className="search-results-wrapper" key={index}>
+              {group.list.map((result, i) => (
+                <SearchResult
+                  redditBaseUrl={this.props.redditBaseUrl}
+                  key={i}
+                  result={result.data}
+                />
+              ))}
+            </span>
+          ))}
         </section>
       </div>
     );

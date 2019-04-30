@@ -9,7 +9,6 @@ class SearchResultCard extends Component {
   }
 
   render() {
-
     let thumbStyle = {
       backgroundImage: 'url(' + this.props.result.thumbnail + ')'
     };
