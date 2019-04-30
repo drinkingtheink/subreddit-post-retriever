@@ -71,9 +71,11 @@ class Search extends Component {
     let index = 0
     const arrayLength = rawResults.length
     const groupList = []
+    let entry = 0
     
     for (index = 0; index < arrayLength; index += groupSize) {
       let newGroup = {
+        index: entry++,
         active: false,
         list: rawResults.slice(index, index+groupSize)
       }
