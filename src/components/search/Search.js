@@ -20,7 +20,8 @@ class Search extends Component {
       readyToSubmitSearch: false,
       fetchingData: false,
       showError: false,
-      activeResultsPageIndex: initialActiveResultsPageIndex
+      activeResultsPageIndex: initialActiveResultsPageIndex,
+      currentSubreddit: null
     };
     this.searchTheReddits = debounce(500, this.searchTheReddits);
   }
@@ -53,10 +54,13 @@ class Search extends Component {
       .then(response => this.distillSearchResults(response["data"]))
       .then(composedSearchResults => this.generateResultsGroups(composedSearchResults, 10))
       .then(composedSearchGroups => {
+        let firstGroup = composedSearchGroups[0].list[0].data
+        let currentSubreddit = firstGroup.subreddit || null
         this.setState({
           searchResults: composedSearchGroups,
           fetchingData: false,
-          activeResultsPageIndex: 0
+          activeResultsPageIndex: 0,
+          currentSubreddit: currentSubreddit
         })
       })
       .catch(error => {
@@ -177,8 +181,14 @@ class Search extends Component {
 
         <section className="results">
           { searchResultsFound && searchTermActive ? (
-            <h3>
-              Search Result{ searchResultsCount > 1 || searchResultsCount ? 's' : null }
+            <h3 className="search-results-header">
+              Search Result{ searchResultsCount > 1 || searchResultsCount ? 's ' : null }
+              { this.state.currentSubreddit 
+                ? <>
+                    for <em className="current-subreddit"> { this.state.currentSubreddit }</em>
+                  </>
+                : null
+              }
             </h3>
           ) : null
         }
@@ -213,6 +223,7 @@ class Search extends Component {
             : null
           }
         </section>
+
       </main>
     )
   }
