@@ -55,13 +55,15 @@ class Search extends Component {
       .then(composedSearchGroups => {
         this.setState({
           searchResults: composedSearchGroups,
-          fetchingData: false
+          fetchingData: false,
+          activeResultsPageIndex: 0
         })
       })
       .catch(error => {
         this.setState({
           showError: true,
-          fetchingData: false
+          fetchingData: false,
+          activeResultsPageIndex: 0
         })
       })
   }

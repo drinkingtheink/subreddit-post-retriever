@@ -34,7 +34,7 @@ class SearchResultCard extends Component {
       } else {
         return (
           <p className="post-author unattributed">
-            <i class="fa fa-user"></i> 
+            <i className="fa fa-user"></i> 
             Unknown
           </p>
         );
