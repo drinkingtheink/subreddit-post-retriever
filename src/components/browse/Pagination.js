@@ -8,14 +8,12 @@ class Pagination extends Component {
   render() {
     const groupsPassed = this.props.groups && this.props.groups.length > 0
     const groupsCount = groupsPassed ? this.props.groups.length : 0
-    const activeGroupPassed = this.props.activeResultsGroup && this.props.activeResultsGroup.length > 0
-    const activeIndex = activeGroupPassed ? this.props.activeResultsGroup[0].index : null
 
     return (
       <section className="search-pagination">
         <p className="pagination-meta">
           <strong>
-            Page {activeIndex + 1} of {groupsCount}
+            Page {this.props.activeResultsPageIndex + 1} of {groupsCount}
           </strong>
 
           { groupsCount > 1 
@@ -23,7 +21,7 @@ class Pagination extends Component {
                 {this.props.groups.map((result, i) => (
                   <span 
                     onClick={this.broadcastActiveGroupChange(result.index)}
-                    className={`group-click ${result.active ? 'active' : ''}`}
+                    className={`group-click ${ i === this.props.activeResultsPageIndex ? 'active' : ''}`}
                     key={i}>
                   </span>
                 ))}

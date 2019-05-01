@@ -1,5 +1,6 @@
 $app-border-radius: 4px;
 
+@import './styles/_base';
 @import './styles/_palette';
 @import './styles/_forms';
 @import './styles/_buttons';
@@ -9,19 +10,3 @@ $app-border-radius: 4px;
 @import './styles/_subreddit_search';
 @import './styles/_subreddit_search_results';
 @import './styles/_search_message';
-
-body,
-html {
-  @include bgTexture;
-  position: relative;
-}
-
-.App {
-  text-align: center;
-  height: 100vh;
-}
-
-.main-headline {
-  margin: 0;
-  padding: 2rem 0;
-}

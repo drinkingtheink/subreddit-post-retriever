@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import BrowseSearchResults from '../browse/BrowseSearchResults'
 import Pagination from '../browse/Pagination'
 import SearchMessage from './SearchMessage'
-import {debounce} from 'throttle-debounce'
+import { debounce } from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
-const initialHeadline = 'Search Subreddits Here'
+const initialHeadline = 'Search the Subreddits'
+const initialActiveResultsPageIndex = 0
 
 class Search extends Component {
   constructor(props) {
@@ -17,8 +18,8 @@ class Search extends Component {
       searchResults: [],
       readyToSubmitSearch: false,
       fetchingData: false,
-      currentSubreddit: null,
-      showError: false
+      showError: false,
+      activeResultsPageIndex: initialActiveResultsPageIndex
     };
     this.searchTheReddits = debounce(500, this.searchTheReddits);
   }
@@ -72,18 +73,13 @@ class Search extends Component {
     let index = 0
     const arrayLength = rawResults.length
     const groupList = []
-    let entry = 0
     
     for (index = 0; index < arrayLength; index += groupSize) {
       let newGroup = {
-        index: entry++,
-        active: false,
         list: rawResults.slice(index, index+groupSize)
       }
       groupList.push(newGroup)
     }
-
-    groupList[0].active = true
     return groupList
   }
 
@@ -96,7 +92,8 @@ class Search extends Component {
       readyToSubmitSearch: false,
       fetchingData: false,
       currentSubreddit: null,
-      showError: false
+      showError: false,
+      activeResultsPageIndex: initialActiveResultsPageIndex
     })
     this.refs.search.value = ''
     this.refs.search.focus()
@@ -108,6 +105,20 @@ class Search extends Component {
     })
   }
 
+  countUpActiveResultsPageIndex = (upperBounds) => {
+    let newIndex = this.state.activeResultsPageIndex + 1
+    this.setState({
+      activeResultsPageIndex: newIndex
+    })
+  }
+
+  countDownActiveResultsPageIndex = () => {
+    let newIndex = this.state.activeResultsPageIndex - 1
+    this.setState({
+      activeResultsPageIndex: newIndex
+    })
+  }
+
   componentDidMount(){
     this.refs.search.focus()
   }
@@ -115,7 +126,7 @@ class Search extends Component {
   render() {
     const searchResultsFound = this.state.searchResults && this.state.searchResults.length > 0
     const searchResultsCount = searchResultsFound ? this.state.searchResults.length : 0
-    let activeResultsGroup = this.state.searchResults.filter(result => result.active) || false
+    let activeResultsGroup = this.state.searchResults[this.state.activeResultsPageIndex] || false
 
     return (
       <main className="subreddit-search">
@@ -132,15 +143,37 @@ class Search extends Component {
         { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
 
         <section className="actions">
-          { searchResultsFound ? <button className="{ clear-search, this.state.searchTerm.length > 0 ? '' : 'disabled' }" onClick={this.resetSearch}>Clear Search</button> : null }
+          { searchResultsFound 
+            ? 
+              <>
+                <button 
+                  className={searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled'}
+                  onClick={this.countDownActiveResultsPageIndex}> 
+                    &lt;&lt; 
+                </button>
+                <button 
+                  className="{ clear-search, this.state.searchTerm.length > 0 ? '' : 'disabled' }" 
+                  onClick={this.resetSearch}>
+                  Clear Search
+                </button> 
+                <button 
+                  className={searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled'}
+                  onClick={this.countUpActiveResultsPageIndex}> 
+                    &gt;&gt; 
+                
+                </button>
+              </>
+            : null
+          }
         </section>  
 
         <section className="results">
-          {searchResultsFound ? (
-            <h2>
+          { searchResultsFound ? (
+            <h3>
               Search Result{ searchResultsCount > 1 || searchResultsCount ? 's' : null }
-            </h2>
-          ) : null}
+            </h3>
+          ) : null
+        }
 
 
           { this.state.showError 
@@ -151,6 +184,7 @@ class Search extends Component {
           { searchResultsFound 
             ? <Pagination 
               groups={this.state.searchResults} 
+              activeResultsPageIndex={this.state.activeResultsPageIndex}
               activeResultsGroup={activeResultsGroup} />
             : null
           }
