@@ -128,6 +128,7 @@ class Search extends Component {
   render() {
     const searchResultsFound = this.state.searchResults && this.state.searchResults.length > 0
     const searchResultsCount = searchResultsFound ? this.state.searchResults.length : 0
+    const searchTermActive = this.state.searchTerm && this.state.searchTerm.length > 2
     let activeResultsGroup = this.state.searchResults[this.state.activeResultsPageIndex] || false
 
     return (
@@ -150,7 +151,7 @@ class Search extends Component {
         { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
 
         <section className="actions">
-          { searchResultsFound 
+          { searchResultsFound && searchTermActive
             ? 
               <>
                 <button 
@@ -175,7 +176,7 @@ class Search extends Component {
         </section>  
 
         <section className="results">
-          { searchResultsFound ? (
+          { searchResultsFound && searchTermActive ? (
             <h3>
               Search Result{ searchResultsCount > 1 || searchResultsCount ? 's' : null }
             </h3>
@@ -183,12 +184,12 @@ class Search extends Component {
         }
 
 
-          { this.state.showError 
+          { this.state.showError && searchTermActive
             ? <SearchMessage headline="Whoops, something went wrong with your search" message="Please try a different search term or try again later. Thank you." />
             : null
           }
 
-          { searchResultsFound 
+          { searchResultsFound && searchTermActive
             ? <Pagination 
                 groups={this.state.searchResults} 
                 activeResultsPageIndex={this.state.activeResultsPageIndex}
@@ -197,7 +198,7 @@ class Search extends Component {
             : null
           }
 
-          { activeResultsGroup 
+          { activeResultsGroup && searchTermActive
             ? <BrowseSearchResults 
                 redditBaseUrl={redditBaseUrl} 
                 searchResultsGroup={activeResultsGroup} 

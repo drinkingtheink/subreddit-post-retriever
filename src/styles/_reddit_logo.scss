@@ -1,4 +1,12 @@
+@keyframes fetchingSpin {
+  100% { 
+    opacity: 1;
+    transform: rotate(180deg); 
+  }
+}
+
 .reddit-logo {
+  transition: all .2s;
   opacity: .7;
 
   * > {
@@ -14,6 +22,6 @@
   }
 
   &.fetching {
-    opacity: 1;
+    animation: fetchingSpin .4s infinite alternate;
   }
 }
