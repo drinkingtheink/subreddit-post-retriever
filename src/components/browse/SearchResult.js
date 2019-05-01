@@ -41,20 +41,25 @@ class SearchResultCard extends Component {
       }
     }
 
+    let revealAnimation = {
+      animationDelay: '.' + this.props.result.entry * 100 + '.ms'
+    };
+
     return (
       <div className="search-result">
-        <h2 className="post-headline">
+        <header className="post-headline">
           <a 
-            href={this.props.redditBaseUrl + '/' + this.props.result.permalink} 
-            alt={this.props.result.title}
+            href={ this.props.redditBaseUrl + '/' + this.props.result.permalink } 
+            alt={ this.props.result.title }
             target="_blank"
             rel="noopener noreferrer"
+            className={revealAnimation}
             >
-              {this.props.result.title}
+              { this.props.result.title }
           </a>
-        </h2>
-        <p className="result-display_name">{this.props.result.display_name_prefixed}</p>
-        <Author author={this.props.result.author} thumbnail={this.props.result.thumbnail} />
+        </header>
+        <p className="result-display_name">{ this.props.result.display_name_prefixed }</p>
+        <Author author={ this.props.result.author } thumbnail={ this.props.result.thumbnail } />
       </div>
     )
   }
