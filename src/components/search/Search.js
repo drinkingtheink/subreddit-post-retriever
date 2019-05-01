@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BrowseSearchResults from '../browse/BrowseSearchResults'
 import Pagination from '../browse/Pagination'
 import SearchMessage from './SearchMessage'
+import RedditLogo from './RedditLogo'
 import { debounce } from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
@@ -34,9 +35,6 @@ class Search extends Component {
     
     if(searchText && searchText.length > 2) {
         this.clearSearchResults()
-        this.setState({
-          fetchingData : true
-        });
         let trimmedText = searchText.replace(/\s/g, '')
         this.searchTheReddits(trimmedText)
     } 
@@ -45,6 +43,10 @@ class Search extends Component {
   searchTheReddits = (searchText) => {
     const subredditSearch = `/r/`
     const url = `${redditBaseUrl}${subredditSearch}${searchText}.json`
+
+    this.setState({
+      fetchingData : true
+    });
 
     fetch(url)
       .then(response => response.json())
@@ -105,14 +107,14 @@ class Search extends Component {
     })
   }
 
-  countUpActiveResultsPageIndex = (upperBounds) => {
+  incrementActiveResultsPageIndex = (upperBounds) => {
     let newIndex = this.state.activeResultsPageIndex + 1
     this.setState({
       activeResultsPageIndex: newIndex
     })
   }
 
-  countDownActiveResultsPageIndex = () => {
+  decrementActiveResultsPageIndex = () => {
     let newIndex = this.state.activeResultsPageIndex - 1
     this.setState({
       activeResultsPageIndex: newIndex
@@ -131,7 +133,12 @@ class Search extends Component {
     return (
       <main className="subreddit-search">
         <div className="subreddit-search__input-stage">
-          <h1 className="main-headline">{this.state.headline}</h1>
+          
+          <h1 className="main-headline">
+            <RedditLogo fetchingData={this.state.fetchingData} />
+            {this.state.headline}
+          </h1>
+          
           <input 
             type="text"
             onChange={this.handleSearchTermChange.bind(this)}
@@ -148,7 +155,7 @@ class Search extends Component {
               <>
                 <button 
                   className={searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled'}
-                  onClick={this.countDownActiveResultsPageIndex}> 
+                  onClick={this.decrementActiveResultsPageIndex}> 
                     &lt;&lt; 
                 </button>
                 <button 
@@ -158,7 +165,7 @@ class Search extends Component {
                 </button> 
                 <button 
                   className={searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled'}
-                  onClick={this.countUpActiveResultsPageIndex}> 
+                  onClick={this.incrementActiveResultsPageIndex}> 
                     &gt;&gt; 
                 
                 </button>
@@ -183,9 +190,10 @@ class Search extends Component {
 
           { searchResultsFound 
             ? <Pagination 
-              groups={this.state.searchResults} 
-              activeResultsPageIndex={this.state.activeResultsPageIndex}
-              activeResultsGroup={activeResultsGroup} />
+                groups={this.state.searchResults} 
+                activeResultsPageIndex={this.state.activeResultsPageIndex}
+                activeResultsGroup={activeResultsGroup}
+              />
             : null
           }
 

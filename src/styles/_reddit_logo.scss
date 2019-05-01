@@ -1,0 +1,19 @@
+.reddit-logo {
+  opacity: .7;
+
+  * > {
+    transition: all .2s;
+  }
+
+  .st0 {
+    fill: white;
+  }
+
+  .st1 {
+    fill: $color3;
+  }
+
+  &.fetching {
+    opacity: 1;
+  }
+}

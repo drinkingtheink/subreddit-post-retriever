@@ -13,11 +13,6 @@ $group-click-dimension: .75em;
   background-color: $dark_gray;
   margin-right: .25rem;
 
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
-  }
-
   &.active {
     opacity: 1;
     background-color: $color3;
