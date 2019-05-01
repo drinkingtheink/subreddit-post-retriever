@@ -152,7 +152,7 @@ class Search extends Component {
             type="text"
             onChange={this.handleSearchTermChange.bind(this)}
             className="subreddit-search__input"
-            placeholder="Start searching here..." 
+            placeholder="Start typing to surf the Subreddits..." 
             ref="search" />
         </div>
 
