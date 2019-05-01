@@ -148,8 +148,6 @@ class Search extends Component {
             ref="search" />
         </div>
 
-        { this.state.fetchingData ? <p className="fetching-data">Fetching Data...</p> : null }
-
         <section className="actions">
           { searchResultsFound && searchTermActive
             ? 
@@ -160,7 +158,7 @@ class Search extends Component {
                     &lt;&lt; 
                 </button>
                 <button 
-                  className="{ clear-search, this.state.searchTerm.length > 0 ? '' : 'disabled' }" 
+                  className="clear-search" 
                   onClick={this.resetSearch}>
                   Clear Search
                 </button> 
