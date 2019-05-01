@@ -13,7 +13,8 @@ button {
   }
 
   &.disabled {
-    opacity: .7;
+    opacity: .3;
     pointer-events: none;
+    background-color: $dark_gray;
   }
 }
