@@ -18,15 +18,18 @@ class Pagination extends Component {
             Page {activeIndex + 1} of {groupsCount}
           </strong>
 
-          <span className="clickable-nav">
-            {this.props.groups.map((result, i) => (
-              <span 
-                onClick={this.broadcastActiveGroupChange(result.index)}
-                className={`group-click ${result.active ? 'active' : ''}`}
-                key={i}>
+          { groupsCount > 1 
+            ? <span className="clickable-nav">
+                {this.props.groups.map((result, i) => (
+                  <span 
+                    onClick={this.broadcastActiveGroupChange(result.index)}
+                    className={`group-click ${result.active ? 'active' : ''}`}
+                    key={i}>
+                  </span>
+                ))}
               </span>
-            ))}
-          </span>
+            : null
+          }
         </p>
       </section>
     );

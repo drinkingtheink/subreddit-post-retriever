@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import BrowseSearchResults from '../browse/BrowseSearchResults'
 import Pagination from '../browse/Pagination'
 import SearchMessage from './SearchMessage'
@@ -36,7 +36,8 @@ class Search extends Component {
         this.setState({
           fetchingData : true
         });
-        this.searchTheReddits(searchText)
+        let trimmedText = searchText.replace(/\s/g, '')
+        this.searchTheReddits(trimmedText)
     } 
   }
 
