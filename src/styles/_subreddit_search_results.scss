@@ -127,4 +127,14 @@ $reveal-animation: fadeInUp .2s;
       border: 2px solid $color3;
     }
   }
+
+  .post-comments-count {
+    display: block;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    margin-top: .5rem;
+    background-color: rgba($dark_gray, .1);
+    border-radius: 10px;
+    color: $dark_gray;
+  }
 }

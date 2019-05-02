@@ -13,6 +13,9 @@ class SearchResultCard extends Component {
       backgroundImage: 'url(' + this.props.result.thumbnail + ')'
     };
 
+    let commentsCount = this.props.result.num_comments ? this.props.result.num_comments : false
+    let commentsSubmitted = commentsCount > 0
+
     function Thumbnail({thumbnail}) {
       if (thumbnail !== '' && thumbnail !== 'self') {
         return (
@@ -42,7 +45,7 @@ class SearchResultCard extends Component {
     }
 
     let revealAnimation = {
-      animationDelay: '.' + this.props.result.entry * 100 + '.ms'
+      animationDelay: '.' + (this.props.result.entry) * 100 + '.ms'
     };
 
     return (
@@ -55,7 +58,14 @@ class SearchResultCard extends Component {
             rel="noopener noreferrer"
             className={revealAnimation}
             >
-              { this.props.result.title }
+              <span className="post-title">{ this.props.result.title }</span>
+              
+              { commentsSubmitted 
+                ? <section className="post-comments-count">{ commentsCount } Comments</section>
+                : 
+                null 
+              }
+
           </a>
         </header>
         <p className="result-display_name">{ this.props.result.display_name_prefixed }</p>
