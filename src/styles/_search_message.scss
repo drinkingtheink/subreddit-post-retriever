@@ -1,4 +1,7 @@
+@import './_animations';
+
 .search-message {
+  @include introAnimation;
   background-color: rgba(white, .5);
   margin: 0 auto;
   max-width: 60vw;
