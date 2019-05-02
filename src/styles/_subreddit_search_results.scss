@@ -124,6 +124,7 @@ $reveal-animation: fadeInUp .2s;
       border-radius: 50%;
       background-color: white;
       margin-right: .5rem;
+      margin-bottom: -$post-thumbnail-dim/2;
       border: 2px solid $color3;
     }
   }
