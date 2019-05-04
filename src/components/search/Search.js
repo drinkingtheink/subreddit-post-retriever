@@ -159,7 +159,7 @@ class Search extends Component {
         </div>
 
         <section className="actions">
-          { searchResultsFound && searchTermActive
+          { searchResultsFound && searchTermActive || this.state.showError
             ? 
               <>
                 <button 
@@ -223,7 +223,7 @@ class Search extends Component {
           }
 
           { !this.state.searchTerm && !this.state.showError 
-            ? <SearchMessage headline="You should enter a search term" message="Start typing to start searching..." />
+            ? <SearchMessage headline="You should enter a search term" message="What do you want to explore? Space? Waffles? Car repair? Whatever it is, we'll try to find the most recent posts." />
             : null
           }
         </section>

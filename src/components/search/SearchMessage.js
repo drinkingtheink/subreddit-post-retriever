@@ -6,7 +6,7 @@ class SearchMessage extends Component {
     return (
       <div className="search-message">
         <h2>{this.props.headline}</h2>
-        <p className="display_name">{this.props.message}</p>
+        <p className="message-text">{this.props.message}</p>
       </div>
     )
   }
