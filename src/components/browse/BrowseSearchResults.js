@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import SearchResult from "./SearchResult";
+import React, { Component } from "react"
+import SearchResult from "./SearchResult"
+import PropTypes from 'prop-types'
 
 class BrowseSearchResults extends Component {
   render() {
@@ -17,6 +18,13 @@ class BrowseSearchResults extends Component {
       </div>
     );
   }
+}
+
+BrowseSearchResults.propTypes = {
+  redditBaseUrl: PropTypes.string,
+  searchResultsGroup: PropTypes.object,
+  searchResultsFound: PropTypes.bool,
+  searchResultsCount: PropTypes.number
 }
 
 export default BrowseSearchResults;

@@ -145,14 +145,14 @@ class Search extends Component {
           
           <h1 className="main-headline">
             <RedditLogo 
-              fetchingData={this.state.fetchingData} 
-              resultsDisplayed={searchResultsFound} />
-            {this.state.headline}
+              fetchingData={ this.state.fetchingData } 
+              resultsDisplayed={ searchResultsFound } />
+            { this.state.headline }
           </h1>
           
           <input 
             type="text"
-            onChange={this.handleSearchTermChange.bind(this)}
+            onChange={ this.handleSearchTermChange.bind(this) }
             className="subreddit-search__input"
             placeholder="Start typing to surf the Subreddits..." 
             ref="search" />
@@ -163,8 +163,8 @@ class Search extends Component {
             ? 
               <>
                 <button 
-                  className={searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled'}
-                  onClick={this.decrementActiveResultsPageIndex}> 
+                  className={ searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled' }
+                  onClick={ this.decrementActiveResultsPageIndex }> 
                     &lt;&lt; 
                 </button>
                 <button 
@@ -173,8 +173,8 @@ class Search extends Component {
                   Clear Search
                 </button> 
                 <button 
-                  className={searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled'}
-                  onClick={this.incrementActiveResultsPageIndex}> 
+                  className={ searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled' }
+                  onClick={ this.incrementActiveResultsPageIndex }> 
                     &gt;&gt; 
                 
                 </button>
@@ -205,19 +205,19 @@ class Search extends Component {
 
           { searchResultsFound && searchTermActive
             ? <Pagination 
-                groups={this.state.searchResults} 
-                activeResultsPageIndex={this.state.activeResultsPageIndex}
-                activeResultsGroup={activeResultsGroup}
+                groups={ this.state.searchResults } 
+                activeResultsPageIndex={ this.state.activeResultsPageIndex }
+                activeResultsGroup={ activeResultsGroup }
               />
             : null
           }
 
           { activeResultsGroup && searchTermActive
             ? <BrowseSearchResults 
-                redditBaseUrl={redditBaseUrl} 
-                searchResultsGroup={activeResultsGroup} 
-                searchResultsFound={searchResultsFound}
-                searchResultsCount={searchResultsCount}
+                redditBaseUrl={ redditBaseUrl }  
+                searchResultsGroup={ activeResultsGroup } 
+                searchResultsFound={ searchResultsFound }
+                searchResultsCount={ searchResultsCount }
               />
             : null
           }

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class RedditLogo extends Component {
   render() {    
@@ -47,6 +48,11 @@ class RedditLogo extends Component {
       </svg>    
     )
   }
+}
+
+RedditLogo.propTypes = {
+  resultsDisplayed: PropTypes.bool,
+  fetchingData: PropTypes.bool
 }
 
 export default RedditLogo;

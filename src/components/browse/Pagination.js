@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import PropTypes from 'prop-types'
 
 class Pagination extends Component {
   broadcastActiveGroupChange = (groupIndex) => {
@@ -32,6 +33,12 @@ class Pagination extends Component {
       </section>
     );
   }
+}
+
+Pagination.propTypes = {
+  groups: PropTypes.array,
+  activeResultsPageIndex: PropTypes.number,
+  activeResultsGroup: PropTypes.object
 }
 
 export default Pagination;

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class SearchMessage extends Component {
   render() {
@@ -9,6 +10,11 @@ class SearchMessage extends Component {
       </div>
     )
   }
+}
+
+SearchMessage.propTypes = {
+  headline: PropTypes.string,
+  message: PropTypes.string
 }
 
 export default SearchMessage;
