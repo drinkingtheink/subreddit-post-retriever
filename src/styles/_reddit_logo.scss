@@ -24,4 +24,8 @@
   &.fetching {
     animation: fetchingSpin .4s infinite alternate;
   }
+
+  &.filled {
+    opacity: 1;
+  }
 }

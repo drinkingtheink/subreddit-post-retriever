@@ -144,7 +144,9 @@ class Search extends Component {
         <div className="subreddit-search__input-stage">
           
           <h1 className="main-headline">
-            <RedditLogo fetchingData={this.state.fetchingData} />
+            <RedditLogo 
+              fetchingData={this.state.fetchingData} 
+              resultsDisplayed={searchResultsFound} />
             {this.state.headline}
           </h1>
           

@@ -4,7 +4,7 @@ class RedditLogo extends Component {
   render() {    
     return (
       <svg 
-        className={`reddit-logo ${this.props.fetchingData ? 'fetching' : ''}`}  
+        className={`reddit-logo ${this.props.fetchingData ? 'fetching' : ''} ${this.props.resultsDisplayed ? 'filled' : ''}`}  
         version="1.1" 
         id="Layer_1" 
         xmlns="http://www.w3.org/2000/svg" 

@@ -29,7 +29,7 @@ $reveal-animation: fadeInUp .2s;
 
 .search-result {
   width: 25%;
-  margin: 0 .5rem .5rem 0;
+  margin: 0 .5rem 1rem 0;
   display: flex;
   flex-direction: column;
   align-content: space-between;
@@ -57,7 +57,7 @@ $reveal-animation: fadeInUp .2s;
       animation: $reveal-animation;
 
       &:hover {
-        color: darken( $color3, 10% );
+        color: $dark_gray;
         border-color: $color3;
       }
 
