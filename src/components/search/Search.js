@@ -6,7 +6,7 @@ import RedditLogo from './RedditLogo'
 import { debounce } from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
-const initialHeadline = 'Search the Subreddits'
+const initialHeadline = 'Surf the Subreddits'
 const initialActiveResultsPageIndex = 0
 
 class Search extends Component {
