@@ -109,6 +109,14 @@ $reveal-animation: fadeInUp .2s;
     }
   }
 
+  .prefixed-subreddit {
+    margin: 0 0 .5rem 0;
+    padding: 0;
+    font-size: .8rem;
+    text-transform: uppercase;
+    color: $dark_gray;
+  }
+
   $post-thumbnail-dim: 2.5em;
 
   .post-author {

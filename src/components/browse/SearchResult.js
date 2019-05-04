@@ -26,6 +26,14 @@ class SearchResultCard extends Component {
       }
     }
 
+    function SubredditPrefixed({ subredditNamePrefixed }) {
+      if (subredditNamePrefixed) {
+        return <p className="prefixed-subreddit">{subredditNamePrefixed}</p>
+      } else {
+        return null
+      }
+    }
+
     function Author({ author, thumbnail }) {
       if (author) {
         return (
@@ -58,6 +66,7 @@ class SearchResultCard extends Component {
             rel="noopener noreferrer"
             className={revealAnimation}
             >
+              <SubredditPrefixed subredditNamePrefixed={ this.props.result.subreddit_name_prefixed }/>
               <span className="post-title">{ this.props.result.title }</span>
               
               { commentsSubmitted 
