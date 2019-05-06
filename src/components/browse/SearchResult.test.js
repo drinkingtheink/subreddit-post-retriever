@@ -1,19 +1,23 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { mount, shallow } from 'enzyme'
 import SearchResult from './SearchResult'
-import TestRenderer from 'react-test-renderer'
 import { exampleSearchResult } from './test/exampleSearchResult.js'
 
-const compName = 'SearchResult'
-const testRenderer = TestRenderer.create(<SearchResult result={ exampleSearchResult } />);
-const testInstance = testRenderer.root;
+const redditBaseUrl = 'https://www.reddit.com'
 
-describe(`${compName} =====================`, () => {
+describe(`Search Result =====================`, () => {
 
   it(`renders without crashing`, () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<SearchResult result={ exampleSearchResult } />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    shallow(<SearchResult result={ exampleSearchResult } />)
+  });
+
+   it('displays passed result data', () => {
+    const searchResult = mount(<SearchResult result={ exampleSearchResult } redditBaseUrl={ redditBaseUrl } />)
+    expect(searchResult.find('.post-title').text()).toEqual(exampleSearchResult.title)
+    expect(searchResult.find('.prefixed-subreddit').text()).toEqual(exampleSearchResult.subreddit_name_prefixed)
+    expect(searchResult.find('.post-comments-count').text()).toEqual(`${exampleSearchResult.num_comments} Comments`)
+    expect(searchResult.find('.post-headline a').prop('href')).toEqual(`${redditBaseUrl}/${exampleSearchResult.permalink}`)
+    expect(searchResult.find('.post-headline a').prop('target')).toEqual('_blank')
   });
 
 });

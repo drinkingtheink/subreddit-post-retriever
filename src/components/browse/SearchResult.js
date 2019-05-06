@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class SearchResultCard extends Component {
   constructor(props) {
@@ -9,22 +10,8 @@ class SearchResultCard extends Component {
   }
 
   render() {
-    let thumbStyle = {
-      backgroundImage: 'url(' + this.props.result.thumbnail + ')'
-    };
-
     let commentsCount = this.props.result.num_comments ? this.props.result.num_comments : false
     let commentsSubmitted = commentsCount > 0
-
-    function Thumbnail({thumbnail}) {
-      if (thumbnail !== '' && thumbnail !== 'self') {
-        return (
-          <span className="post-thumbnail" style={thumbStyle}></span>
-        )
-      } else {
-        return null
-      }
-    }
 
     function SubredditPrefixed({ subredditNamePrefixed }) {
       if (subredditNamePrefixed) {
@@ -34,13 +21,10 @@ class SearchResultCard extends Component {
       }
     }
 
-    function Author({ author, thumbnail }) {
+    function Author({ author }) {
       if (author) {
         return (
-          <p className="post-author attributed">
-            <Thumbnail thumbnail={thumbnail} /> 
-            {author}
-          </p>
+          <p className="post-author attributed">{author}</p>
         );
       } else {
         return (
@@ -78,10 +62,15 @@ class SearchResultCard extends Component {
           </a>
         </header>
         <p className="result-display_name">{ this.props.result.display_name_prefixed }</p>
-        <Author author={ this.props.result.author } thumbnail={ this.props.result.thumbnail } />
+        <Author author={ this.props.result.author } />
       </div>
     )
   }
+}
+
+SearchResultCard.propTypes = {
+  redditBaseUrl: PropTypes.string,
+  result: PropTypes.object
 }
 
 export default SearchResultCard;

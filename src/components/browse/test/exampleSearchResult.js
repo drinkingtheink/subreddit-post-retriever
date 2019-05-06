@@ -45,7 +45,7 @@ const exampleSearchResult = {
    "can_mod_post":false,
    "score":9,
    "approved_by":null,
-   "thumbnail":"self",
+   "thumbnail":"https://b.thumbs.redditmedia.com/Y8yt5FL9p-apoUFTR13lun7ubZ-SKrB2hsX8UB3gICc.jpg",
    "edited":false,
    "author_flair_css_class":null,
    "author_flair_richtext":[
