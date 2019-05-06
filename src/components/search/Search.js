@@ -159,7 +159,7 @@ class Search extends Component {
         </div>
 
         <section className="actions">
-          { searchResultsFound && searchTermActive || this.state.showError
+          { (searchResultsFound && searchTermActive) || this.state.showError
             ? 
               <>
                 <button 
