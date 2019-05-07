@@ -121,24 +121,11 @@ $reveal-animation: fadeInUp .2s;
     color: rgba($dark_gray, .7);
   }
 
-  $post-thumbnail-dim: 2.5em;
-
   .post-author {
     margin: 0;
     text-align: left;
     font-weight: bold;
     padding: 0 0 1rem 1rem;
-
-    .post-thumbnail {
-      display: inline-block;
-      height: $post-thumbnail-dim;
-      width: $post-thumbnail-dim;
-      border-radius: 50%;
-      background-color: white;
-      margin-right: .5rem;
-      margin-bottom: -$post-thumbnail-dim/2;
-      border: 2px solid $color3;
-    }
   }
 
   .post-comments-count {
@@ -150,4 +137,16 @@ $reveal-animation: fadeInUp .2s;
     border-radius: 10px;
     color: $dark_gray;
   }
+}
+
+$post-thumbnail-dim: 2em;
+
+.post-thumbnail {
+  display: block;
+  height: $post-thumbnail-dim;
+  width: $post-thumbnail-dim;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid $color3;
+  margin: .5rem 0;
 }

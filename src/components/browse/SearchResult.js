@@ -36,6 +36,18 @@ class SearchResultCard extends Component {
       }
     }
 
+    function generateBgStyle({thumbnail}) {
+      return { 'backgroundImage': `url(${thumbnail})` }
+    }
+
+    function Thumbnail({thumbnail}) {
+      if (thumbnail && thumbnail !== '' && thumbnail !== 'self' ) {
+        return <span className="post-thumbnail" style={ generateBgStyle({thumbnail}) }></span>
+      } else {
+        return null
+      }
+    }
+
     let revealAnimation = {
       animationDelay: '.' + (this.props.result.entry) * 100 + '.ms'
     };
@@ -52,6 +64,7 @@ class SearchResultCard extends Component {
             >
               <SubredditPrefixed subredditNamePrefixed={ this.props.result.subreddit_name_prefixed }/>
               <span className="post-title">{ this.props.result.title }</span>
+              <Thumbnail thumbnail={ this.props.result.thumbnail || null } />
               
               { commentsSubmitted 
                 ? <section className="post-comments-count">{ commentsCount } Comments</section>
