@@ -51,7 +51,7 @@ class Search extends Component {
 
     fetch(url)
       .then(response => response.json())
-      .then(response => this.distillSearchResults(response["data"]))
+      .then(response => response["data"].children || [])
       .then(composedSearchResults => this.generateResultsGroups(composedSearchResults, 10))
       .then(composedSearchGroups => {
         let firstGroup = composedSearchGroups[0].list[0].data
@@ -70,11 +70,6 @@ class Search extends Component {
           activeResultsPageIndex: 0
         })
       })
-  }
-
-  distillSearchResults = (searchPayload) => {
-    const composedSearchResults = searchPayload.children || []
-    return composedSearchResults
   }
 
   generateResultsGroups = (rawResults, groupSize) => {
