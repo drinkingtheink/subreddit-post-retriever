@@ -48,10 +48,6 @@ class SearchResultCard extends Component {
       }
     }
 
-    let revealAnimation = {
-      animationDelay: '.' + (this.props.result.entry) * 100 + '.ms'
-    };
-
     return (
       <div className="search-result">
         <header className="post-headline">
@@ -60,7 +56,6 @@ class SearchResultCard extends Component {
             alt={ this.props.result.title }
             target="_blank"
             rel="noopener noreferrer"
-            className={revealAnimation}
             >
               <SubredditPrefixed subredditNamePrefixed={ this.props.result.subreddit_name_prefixed }/>
               <span className="post-title">{ this.props.result.title }</span>
