@@ -1,4 +1,9 @@
-![Subreddit Surfer](https://drive.google.com/file/d/1LuhIZjpJ60Sh8IdSsdFB6UWKqEYIN2Y5/view?usp=sharing)
+![Subreddit Surfer](https://gdurl.com/a_o0)
+
+Find the most recent mosts of any Subreddit easily, thanks to [React](https://reactjs.org/) and the public Reddit .json-rendered search URLs.
+
+
+# App Boilerplate
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
