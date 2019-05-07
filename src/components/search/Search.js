@@ -183,7 +183,7 @@ class Search extends Component {
         <section className="results">
           { searchResultsFound && searchTermActive ? (
             <h3 className="search-results-header">
-              Search Result{ searchResultsCount > 1 || searchResultsCount ? 's ' : null }
+              Most Recents Post{ searchResultsCount > 1 || searchResultsCount ? 's ' : null }
               { this.state.currentSubreddit 
                 ? <>
                     for <em className="current-subreddit"> { this.state.currentSubreddit }</em>
