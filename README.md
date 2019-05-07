@@ -8,6 +8,9 @@ Find the most recent posts of any Subreddit easily, thanks to [React](https://re
 ### The Interface in Action
 ![Subreddit Surfer](https://gdurl.com/4upH)
 
+Keep up with which posts you've visited thanks to the magic of _:visited_ styles.
+![Visited Link styles as state machine](https://gdurl.com/mlDh)
+
 
 ## App Architecture
 
