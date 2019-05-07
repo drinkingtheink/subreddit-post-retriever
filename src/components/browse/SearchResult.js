@@ -2,13 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class SearchResultCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      headline: 'Pretty Cool, Right?'
-    };
-  }
-
   render() {
     let commentsCount = this.props.result.num_comments ? this.props.result.num_comments : false
     let commentsSubmitted = commentsCount > 0
