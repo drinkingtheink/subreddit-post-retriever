@@ -84,6 +84,10 @@ $reveal-animation: fadeInUp .2s;
           border-width: $pointer-before-border-width;
           margin-left: -$pointer-before-border-width;
         }
+
+        .post-thumbnail {
+          border-color: $color1;
+        }
       }
 
       &:after, 
