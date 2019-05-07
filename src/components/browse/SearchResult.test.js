@@ -11,7 +11,7 @@ describe(`Search Result =====================`, () => {
     shallow(<SearchResult result={ exampleSearchResult } />)
   });
 
-   it('displays passed result data', () => {
+  it('displays passed result data', () => {
     const searchResult = mount(<SearchResult result={ exampleSearchResult } redditBaseUrl={ redditBaseUrl } />)
     expect(searchResult.find('.post-title').text()).toEqual(exampleSearchResult.title)
     expect(searchResult.find('.prefixed-subreddit').text()).toEqual(exampleSearchResult.subreddit_name_prefixed)
