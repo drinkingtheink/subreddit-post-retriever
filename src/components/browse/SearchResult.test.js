@@ -8,7 +8,8 @@ const redditBaseUrl = 'https://www.reddit.com'
 describe(`Search Result =====================`, () => {
 
   it(`renders without crashing`, () => {
-    shallow(<SearchResult result={ exampleSearchResult } />)
+    const component = shallow(<SearchResult result={ exampleSearchResult } />)
+    expect(component.exists()).toBe(true)
   });
 
   it('displays passed result data', () => {

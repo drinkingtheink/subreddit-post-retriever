@@ -8,7 +8,8 @@ const wrapper = shallow(<Pagination groups={ examplePaginationPayload.groups } a
 describe(`Pagination =====================`, () => {
 
   it(`renders without crashing`, () => {
-    shallow(<Pagination />)
+    const component = shallow(<Pagination />)
+    expect(component.exists()).toBe(true)
   });
 
   it(`renders with props`, () => {

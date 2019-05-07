@@ -5,7 +5,8 @@ import RedditLogo from './RedditLogo'
 describe(`RedditLogo =====================`, () => {
 
   it(`renders without crashing`, () => {
-    shallow(<RedditLogo />)
+    const component = shallow(<RedditLogo />)
+    expect(component.exists()).toBe(true)
   });
 
   it('renders correctly with no props', () => {

@@ -11,7 +11,8 @@ const exampleMessageBody = {
 describe(`${compName} =====================`, () => {
 
   it(`renders without crashing`, () => {
-    shallow(<SearchMessage />)
+    const component = shallow(<SearchMessage />)
+    expect(component.exists()).toBe(true)
   });
 
   it('renders correctly with no props', () => {
