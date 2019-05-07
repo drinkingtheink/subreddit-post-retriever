@@ -2,7 +2,7 @@
 
 Find the most recent posts of any Subreddit easily, thanks to [React](https://reactjs.org/) and the public Reddit .json-rendered search URLs.
 
-Start typing to start surfing!
+## [Start typing to start surfing!](http://subreddit-surfer.surge.sh/)
 
 
 # App Boilerplate
