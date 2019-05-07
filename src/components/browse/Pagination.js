@@ -10,7 +10,7 @@ class Pagination extends Component {
       <section className="search-pagination">
         <p className="pagination-meta">
           <strong>
-            Page {this.props.activeResultsPageIndex + 1} of {groupsCount}
+            Page <span className="active-page-index">{this.props.activeResultsPageIndex + 1}</span> of <span className="total-groups-count">{groupsCount}</span>
           </strong>
 
           { groupsCount > 1 
