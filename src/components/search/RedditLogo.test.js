@@ -2,9 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import RedditLogo from './RedditLogo'
 
-const compName = 'RedditLogo'
-
-describe(`${compName} =====================`, () => {
+describe(`RedditLogo =====================`, () => {
 
   it(`renders without crashing`, () => {
     shallow(<RedditLogo />)
@@ -12,7 +10,7 @@ describe(`${compName} =====================`, () => {
 
   it('renders correctly with no props', () => {
   	const component = shallow(<RedditLogo />);
-	expect(component).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('displays active state if fetchingData = true', () => {
