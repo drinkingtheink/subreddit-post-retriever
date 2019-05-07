@@ -130,7 +130,9 @@ class Search extends Component {
   }
 
   componentDidMount(){
-    this.refs.search.focus()
+    if (this.refs && this.refs.search) {
+      this.refs.search.focus()
+    }
   }
 
   render() {
