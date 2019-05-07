@@ -22,9 +22,7 @@ class BrowseSearchResults extends Component {
 
 BrowseSearchResults.propTypes = {
   redditBaseUrl: PropTypes.string,
-  searchResultsGroup: PropTypes.object,
-  searchResultsFound: PropTypes.bool,
-  searchResultsCount: PropTypes.number
+  searchResultsGroup: PropTypes.object
 }
 
 export default BrowseSearchResults;
