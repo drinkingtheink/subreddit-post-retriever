@@ -1,6 +1,8 @@
 ![Subreddit Surfer](https://gdurl.com/a_o0)
 
-Find the most recent mosts of any Subreddit easily, thanks to [React](https://reactjs.org/) and the public Reddit .json-rendered search URLs.
+Find the most recent posts of any Subreddit easily, thanks to [React](https://reactjs.org/) and the public Reddit .json-rendered search URLs.
+
+Start typing to start surfing!
 
 
 # App Boilerplate
