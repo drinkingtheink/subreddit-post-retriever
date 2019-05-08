@@ -1,5 +1,5 @@
 ![Subreddit Surfer - Thank you Marvel Comics](https://gdurl.com/a_o0)
-* *Many thanks to Marvel Comics for imagery herein*
+* *-Many thanks to Marvel Comics for imagery herein*
 
 Find the most recent posts of any Subreddit easily, thanks to [React](https://reactjs.org/) and the public Reddit .json-rendered search URLs.
 
@@ -11,6 +11,8 @@ Find the most recent posts of any Subreddit easily, thanks to [React](https://re
 Keep up with which posts you've visited thanks to the magic of _:visited_ styles.
 ![Visited Link styles as state machine](https://gdurl.com/mlDh)
 
+## App Flow
+![Subreddit Surfer - Application Workflow](https://gdurl.com/7D4m)
 
 ## App Architecture
 
