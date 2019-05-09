@@ -160,7 +160,7 @@ class Search extends Component {
             ? 
               <>
                 <button 
-                  className={ searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled' }
+                  className={`prev-results ${searchResultsFound && this.state.activeResultsPageIndex > 0 ? '' : 'disabled' }`}
                   onClick={ this.decrementActiveResultsPageIndex }> 
                     &lt;&lt; 
                 </button>
@@ -170,7 +170,7 @@ class Search extends Component {
                   Clear Search
                 </button> 
                 <button 
-                  className={ searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled' }
+                  className={`next-results ${searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled' }`}
                   onClick={ this.incrementActiveResultsPageIndex }> 
                     &gt;&gt; 
                 </button>
