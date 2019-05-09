@@ -11,6 +11,7 @@ describe(`Search =====================`, () => {
   it(`renders without crashing`, () => {
     const component = mount(<Search />)
     expect(component.exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   });
 
   it(`updates state on input change`, () => {
