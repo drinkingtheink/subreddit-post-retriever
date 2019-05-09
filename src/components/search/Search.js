@@ -173,7 +173,6 @@ class Search extends Component {
                   className={ searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled' }
                   onClick={ this.incrementActiveResultsPageIndex }> 
                     &gt;&gt; 
-                
                 </button>
               </>
             : null
