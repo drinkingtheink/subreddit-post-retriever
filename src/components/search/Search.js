@@ -165,9 +165,9 @@ class Search extends Component {
                     &lt;&lt; 
                 </button>
                 <button 
-                  className="clear-search" 
+                  className="reset-search" 
                   onClick={this.resetSearch}>
-                  Clear Search
+                  Reset Search
                 </button> 
                 <button 
                   className={`next-results ${searchResultsFound && this.state.activeResultsPageIndex < searchResultsCount - 1 ? '' : 'disabled' }`}

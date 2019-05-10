@@ -46,15 +46,17 @@ describe(`Search =====================`, () => {
     expect(component.find('.search-message h2').text()).toBe('You should enter a search term')
   });
 
-  it(`clears search with clear search button`, () => {
+  it(`resets search with Reset Search button`, () => {
     const component = mount(<Search />)
     component.setState({ searchResults: exampleSearchResultsGroups, searchTerm: event.target.value })
-    const clearSearchButton = component.find('.clear-search').simulate('click')
+    component.find('.reset-search').simulate('click')
     component.update()
     expect(component.state('searchTerm')).toBe('')
     expect(component.state('searchFeedback')).toBe(null)
     expect(component.state('searchResults')).toEqual([])
     expect(component.state('currentSubreddit')).toBe(null)
+    expect(component.state('readyToSubmitSearch')).toBe(false)
+    expect(component.state('fetchingData')).toBe(false)
   });
 
   it(`increments active result page index with button`, () => {
