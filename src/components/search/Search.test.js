@@ -4,8 +4,15 @@ import Search from './Search'
 import { exampleRawSearchResults } from '../browse/test/exampleRawSearchResults'
 import { exampleSearchResultsGroups } from '../browse/test/exampleSearchResultsGroups'
 
+const noResultsFoundString = '(*&iuh98*('
+const termDoesntMeetCriteria = 'bb'
+
 const event = {
 	target: { value: 'beer' }
+}
+
+const noSearchEvent = {
+  target: { value: termDoesntMeetCriteria }
 }
 
 describe(`Search =====================`, () => {
@@ -28,9 +35,27 @@ describe(`Search =====================`, () => {
     expect(component.state('searchTerm')).toBe(event.target.value)
   });
 
+  it(`calls the method to fetch JSON if search term meets criteria`, () => {
+    const component = mount(<Search />)
+    const instance = component.instance()
+    const spy = jest.spyOn(instance, 'searchTheReddits')
+    component.find('.subreddit-search__input').simulate('change', event)
+    component.update()
+    expect(instance.searchTheReddits).toHaveBeenCalled()
+  });
+
+  it(`does not call the method to fetch JSON if search term does not meet criteria`, () => {
+    const component = mount(<Search />)
+    const instance = component.instance()
+    const spy = jest.spyOn(instance, 'searchTheReddits')
+    component.find('.subreddit-search__input').simulate('change', noSearchEvent)
+    component.update()
+    expect(instance.searchTheReddits).not.toHaveBeenCalled()
+  });
+
   it(`displays search results and pagination controls if search results found`, () => {
     const component = mount(<Search />)
-    component.setState({ searchResults: exampleSearchResultsGroups, searchTerm: event.target.value });
+    component.setState({ searchResults: exampleSearchResultsGroups, searchTerm: event.target.value })
     component.update()
     expect(component.find('.search-results-header').exists()).toBe(true)
     expect(component.find('.search-results').exists()).toBe(true)
@@ -49,7 +74,7 @@ describe(`Search =====================`, () => {
 
   it(`displays error message if no search results are found`, () => {
     const component = mount(<Search />)
-    component.setState({ searchTerm: '(*&iuh98*(', showError: true });
+    component.setState({ searchTerm: noResultsFoundString, showError: true });
     component.update()
     expect(component.find('.search-results-header').exists()).toBe(false)
     expect(component.find('.search-results').exists()).toBe(false)
@@ -88,7 +113,6 @@ describe(`Search =====================`, () => {
     expect(component.state('searchFeedback')).toBe(null)
     expect(component.state('searchResults')).toEqual([])
     expect(component.state('currentSubreddit')).toBe(null)
-    expect(component.state('readyToSubmitSearch')).toBe(false)
     expect(component.state('fetchingData')).toBe(false)
     expect(component.state('activeResultsPageIndex')).toEqual(0)
   });
