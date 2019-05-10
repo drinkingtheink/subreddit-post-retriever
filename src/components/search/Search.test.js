@@ -44,6 +44,7 @@ describe(`Search =====================`, () => {
     component.update()
     console.log(`STATE UPPPED >>> ${JSON.stringify(component.state())}`)
     expect(component.state('searchResults').length).toEqual(groupSize)
+    // TO-DO: FIX TEST ////////////////////////////////
   });
 
   it(`displays error message if no search results are found`, () => {
@@ -78,14 +79,16 @@ describe(`Search =====================`, () => {
     expect(component.state('activeResultsPageIndex')).toBe(1)
   });
 
-  it(`clears search with Clear Search button`, () => {
+  it(`resets search with Reset Search button`, () => {
     const component = mount(<Search />)
     component.setState({ searchResults: exampleSearchResultsGroups, searchTerm: event.target.value })
-    const clearSearchButton = component.find('.clear-search').simulate('click')
+    component.find('.reset-search').simulate('click')
     component.update()
     expect(component.state('searchTerm')).toBe('')
     expect(component.state('searchFeedback')).toBe(null)
     expect(component.state('searchResults')).toEqual([])
     expect(component.state('currentSubreddit')).toBe(null)
+    expect(component.state('readyToSubmitSearch')).toBe(false)
+    expect(component.state('fetchingData')).toBe(false)
   });
 });
