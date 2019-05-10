@@ -44,7 +44,7 @@ class Search extends Component {
   searchTheReddits = (searchText) => {
     const subredditSearch = `/r/`
     const url = `${redditBaseUrl}${subredditSearch}${searchText}.json`
-    const groupCount = 5
+    const groupCount = 10
 
     this.setState({
       fetchingData : true
@@ -58,7 +58,6 @@ class Search extends Component {
         let firstGroup = composedSearchGroups[0].list[0].data
         let currentSubreddit = firstGroup.subreddit || null
         this.setState({
-          searchResults: composedSearchGroups,
           fetchingData: false,
           activeResultsPageIndex: 0,
           currentSubreddit: currentSubreddit
@@ -86,7 +85,11 @@ class Search extends Component {
       }
       groupList.push(newGroup)
     }
-    console.log(`GROUPS CREATED >> ${JSON.stringify(groupList)}`)
+    
+    this.setState({
+      searchResults: groupList
+    })
+
     return groupList
   }
 

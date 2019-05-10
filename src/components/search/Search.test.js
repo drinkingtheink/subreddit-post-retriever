@@ -36,15 +36,15 @@ describe(`Search =====================`, () => {
     expect(component.find('.search-results').exists()).toBe(true)
   });
   
-  it(`composes search results into groups for pagination`, () => {
+  it(`composes search results into groups of # passed for pagination`, () => {
     const component = mount(<Search />)
     const instance = component.instance()
     const groupSize = 10
     instance.generateResultsGroups(exampleRawSearchResults, groupSize)
     component.update()
-    console.log(`STATE UPPPED >>> ${JSON.stringify(component.state())}`)
-    expect(component.state('searchResults').length).toEqual(groupSize)
-    // TO-DO: FIX TEST ////////////////////////////////
+    const searchResults = component.state('searchResults') || []
+    const exampleResultsGroup = searchResults[0].list || []
+    expect(exampleResultsGroup.length).toEqual(groupSize)
   });
 
   it(`displays error message if no search results are found`, () => {
@@ -90,5 +90,6 @@ describe(`Search =====================`, () => {
     expect(component.state('currentSubreddit')).toBe(null)
     expect(component.state('readyToSubmitSearch')).toBe(false)
     expect(component.state('fetchingData')).toBe(false)
+    expect(component.state('activeResultsPageIndex')).toEqual(0)
   });
 });
