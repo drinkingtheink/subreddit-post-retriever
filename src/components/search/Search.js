@@ -227,6 +227,12 @@ class Search extends Component {
           }
         </section>
 
+
+        <div class="about">
+          <p>
+            <a href="https://github.com/drinkingtheink/subreddit-post-retriever">&#8227; About this Project</a> <a href="https://drinkingtheink.github.io/">&#8227; About the Author</a>
+          </p>
+        </div>
       </main>
     )
   }

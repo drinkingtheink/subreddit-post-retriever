@@ -16,3 +16,19 @@ html {
   padding: 2rem 0;
   text-transform: uppercase;
 }
+
+.about {
+	a {
+		margin-right: .25rem;
+		background-color: $color3;
+		color: white !important;
+		transition: all .2s;
+		padding: .5rem 1rem;
+		border-radius: 5px;
+
+		&:hover {
+			background-color: white;
+			color: $color3 !important;
+		}
+	}
+}
