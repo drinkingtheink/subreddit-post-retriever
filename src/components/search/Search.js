@@ -8,6 +8,7 @@ import { debounce } from 'throttle-debounce'
 const redditBaseUrl = 'https://www.reddit.com'
 const initialHeadline = 'Surf the Subreddits'
 const initialActiveResultsPageIndex = 0
+const searchTextLengthThreshold = 3
 
 class Search extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Search extends Component {
         showError: false
     });
     
-    if(searchText && searchText.length > 2) {
+    if(searchText && searchText.length >= searchTextLengthThreshold) {
         this.clearSearchResults()
         let trimmedText = searchText.replace(/\s/g, '')
         this.searchTheReddits(trimmedText)
@@ -221,14 +222,14 @@ class Search extends Component {
             : null
           }
 
-          { !this.state.searchTerm && !this.state.showError 
-            ? <SearchMessage headline="You should enter a search term" message="What do you want to explore? Space? Waffles? Car repair? Whatever it is, we'll try to find the most recent posts." />
+          { !this.state.searchTerm < searchTextLengthThreshold && !this.state.showError 
+            ? <SearchMessage headline="You should enter a full search term" message="Enter at least three charactrs to get your search started. Explore Space. Or waffles. Car repair? Whatever it is, we'll try to find the most recent posts. Have fun!" />
             : null
           }
         </section>
 
 
-        <div class="about">
+        <div className="about">
           <p>
             <a href="https://github.com/drinkingtheink/subreddit-post-retriever">&#8227; About this Project</a> <a href="https://drinkingtheink.github.io/">&#8227; About the Author</a>
           </p>
