@@ -222,7 +222,7 @@ class Search extends Component {
             : null
           }
 
-          { !this.state.searchTerm < searchTextLengthThreshold && !this.state.showError 
+          { !this.state.searchTerm < searchTextLengthThreshold && !this.state.showError && !searchResultsFound
             ? <SearchMessage headline="You should enter a full search term" message="Enter at least three charactrs to get your search started. Explore Space. Or waffles. Car repair? Whatever it is, we'll try to find the most recent posts. Have fun!" />
             : null
           }
