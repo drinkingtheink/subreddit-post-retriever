@@ -186,7 +186,7 @@ class SearchContainer extends Component {
         <section className="results">
           { searchResultsFound && searchTermActive ? (
             <h3 className="search-results-header">
-              Most Recents Post{ searchResultsCount > 1 || searchResultsCount ? 's ' : null }
+              Most Recent Post{ searchResultsCount > 1 || searchResultsCount ? 's ' : null }
               { this.state.currentSubreddit 
                 ? <>
                     for <em className="current-subreddit"> { this.state.currentSubreddit }</em>
@@ -219,6 +219,14 @@ class SearchContainer extends Component {
                 searchResultsFound={ searchResultsFound }
                 searchResultsCount={ searchResultsCount }
               />
+            : null
+          }
+
+          { this.state.fetchingData
+            ? <div class="sk-chasing-dots">
+                <div class="sk-child sk-dot1"></div>
+                <div class="sk-child sk-dot2"></div>
+              </div>
             : null
           }
 
