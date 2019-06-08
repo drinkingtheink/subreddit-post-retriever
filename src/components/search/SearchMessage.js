@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-class SearchMessage extends Component {
-  render() {
-    return (
-      <div className="search-message">
-        <h2>{this.props.headline}</h2>
-        <p className="message-text">{this.props.message}</p>
-      </div>
-    )
-  }
+const SearchMessage = (props) => {
+  return (
+    <div className="search-message">
+      <h2>{ props.headline }</h2>
+      <p className="message-text">{ props.message }</p>
+    </div>
+  )
 }
 
 SearchMessage.propTypes = {
