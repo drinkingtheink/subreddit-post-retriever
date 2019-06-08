@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import BrowseSearchResults from '../browse/BrowseSearchResults'
-import Pagination from '../browse/Pagination'
-import SearchMessage from './SearchMessage'
-import RedditLogo from './RedditLogo'
+import BrowseSearchResults from '../components/browse/BrowseSearchResults'
+import Pagination from '../components/browse/Pagination'
+import SearchMessage from '../components/search/SearchMessage'
+import RedditLogo from '../components/search/RedditLogo'
 import { debounce } from 'throttle-debounce'
 
 const redditBaseUrl = 'https://www.reddit.com'
@@ -10,7 +10,7 @@ const initialHeadline = 'Surf the Subreddits'
 const initialActiveResultsPageIndex = 0
 const searchTextLengthThreshold = 3
 
-class Search extends Component {
+class SearchContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -222,7 +222,7 @@ class Search extends Component {
             : null
           }
 
-          { !this.state.searchTerm < searchTextLengthThreshold && !this.state.showError && !searchResultsFound
+          { !this.state.searchTerm < searchTextLengthThreshold && !this.state.showError && !searchResultsFound && !this.state.fetchingData
             ? <SearchMessage headline="You should enter a full search term" message="Enter at least three charactrs to get your search started. Explore Space. Or waffles. Car repair? Whatever it is, we'll try to find the most recent posts. Have fun!" />
             : null
           }
@@ -239,4 +239,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default SearchContainer;
