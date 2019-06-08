@@ -1,11 +1,11 @@
 import React from 'react';
-import Search from './components/search/Search'
+import SearchContainer from './containers/SearchContainer'
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <Search />  
+      <SearchContainer />  
     </div>
   );
 }
